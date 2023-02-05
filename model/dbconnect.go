@@ -17,6 +17,8 @@ type Address struct {
 	Status       int
 }
 
+var DB *gorm.DB
+
 func ConnectDb() {
 	err := godotenv.Load()
 	if err != nil {
@@ -28,7 +30,7 @@ func ConnectDb() {
 		panic("failed to connect database")
 	}
 	fmt.Println("Connection Opened to Database")
-
+	DB = db
 	var address Address
 	db.Table("Address").Take(&address)
 	fmt.Print(address)
