@@ -31,6 +31,11 @@ type AddressIpGroup struct {
 	IpGroupId int64
 }
 
+type AddressList struct {
+	Addresses   []Address
+	IpGroupName string
+}
+
 var DB *gorm.DB
 
 func ConnectDb() {
@@ -55,4 +60,13 @@ func ConnectDb() {
 	fmt.Print(address)
 	fmt.Print(ipGroup)
 	fmt.Print(addressIpGroup)
+}
+
+func QueryAddress() AddressList {
+	var address Address
+	DB.Table("Address").Take(&address)
+	var addressList AddressList
+	addressList.Addresses = append(addressList.Addresses, address)
+	addressList.IpGroupName = "cg-6"
+	return addressList
 }
