@@ -35,6 +35,7 @@ func WritePolicyIpFile(addressList model.AddressList) string {
 	fw.WriteString("quit")
 	fw.WriteString("quit")
 	fw.WriteString("quit")
+	fw.Close()
 	return filename
 }
 
