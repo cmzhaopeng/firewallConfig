@@ -5,6 +5,7 @@ import (
 	"fmt"
 	"os"
 	"os/exec"
+	"strconv"
 
 	"github.com/joho/godotenv"
 )
@@ -15,7 +16,7 @@ func WritePolicyIpFile(addressList model.AddressList) string {
 	var ipGroupName string = ""
 	if len(addressList.Addresses) > 0 {
 		ipGroupName = addressList.IpGroupName
-		filename = filename + string(addressList.Addresses[0].StartIntAddress) + ".txt"
+		filename = "cmd" + strconv.FormatInt(addressList.Addresses[0].StartIntAddress, 10) + ".txt"
 	} else {
 		return ""
 	}
@@ -26,15 +27,20 @@ func WritePolicyIpFile(addressList model.AddressList) string {
 		fmt.Println(err)
 		return ""
 	}
-	fw.WriteString("sys")
-	fw.WriteString("ip address-set " + ipGroupName + " type object")
+	fw.WriteString("sys\n")
+	fw.WriteString("ip address-set " + ipGroupName + " type object\n")
 	for _, v := range addressList.Addresses {
-		fw.WriteString("address range " + v.StartAddress + " " + v.EndAddress)
+		if v.StartAddress == v.EndAddress {
+			fw.WriteString("address " + v.StartAddress + " mask 32\n")
+		} else {
+			fw.WriteString("address range " + v.StartAddress + " " + v.EndAddress + "\n")
+		}
+
 	}
 
-	fw.WriteString("quit")
-	fw.WriteString("quit")
-	fw.WriteString("quit")
+	fw.WriteString("quit\n")
+	fw.WriteString("quit\n")
+	fw.WriteString("quit\n")
 	fw.Close()
 	return filename
 }

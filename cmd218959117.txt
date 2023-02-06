@@ -1,0 +1,11 @@
+sys
+ip address-set cg-6 type object
+address 13.13.13.13 mask 32
+address range 1.1.12.23 1.1.12.24
+address 2.2.2.2 mask 32
+address 1.1.1.1 mask 32
+address range 21.1.1.1 21.1.1.10
+address 1.1.12.22 mask 32
+quit
+quit
+quit

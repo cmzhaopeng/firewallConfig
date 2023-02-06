@@ -11,11 +11,11 @@ func main() {
 
 	// for {
 	var addressList model.AddressList = model.QueryAddress()
-	for len(addressList.Addresses) > 9 {
+	for len(addressList.Addresses) > 0 {
 
-		fmt.Print(addressList)
+		//fmt.Print(addressList)
 		filename := firewall.WritePolicyIpFile(addressList)
-		fmt.Printf(filename)
+		fmt.Println(filename)
 		/*
 			if filename!="" {
 				firewall.WriteFirewall(filename)
