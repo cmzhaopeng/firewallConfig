@@ -10,11 +10,25 @@ import (
 )
 
 type Address struct {
-	id           int64
-	StartAddress string
-	EndAddress   string
-	Protocol     string
-	Status       int
+	ID              int64
+	StartAddress    string
+	EndAddress      string
+	Protocol        string
+	StartIntAddress int64
+	EndIntAddress   int64
+	Status          int
+}
+
+type IpGroup struct {
+	ID      int64
+	Name    string
+	IpCount int
+}
+
+type AddressIpGroup struct {
+	ID        int64
+	AddressId int64
+	IpGroupId int64
 }
 
 var DB *gorm.DB
@@ -32,7 +46,13 @@ func ConnectDb() {
 	fmt.Println("Connection Opened to Database")
 	DB = db
 	var address Address
+	var ipGroup IpGroup
+	var addressIpGroup AddressIpGroup
 	db.Table("Address").Take(&address)
-	fmt.Print(address)
+	db.Table("IpGroup").Take(&ipGroup)
+	db.Table("AddressIpGroup").Take(&addressIpGroup)
 
+	fmt.Print(address)
+	fmt.Print(ipGroup)
+	fmt.Print(addressIpGroup)
 }
