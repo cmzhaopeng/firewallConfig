@@ -9,6 +9,7 @@ import (
 func main() {
 	model.ConnectDb()
 
+	// for {
 	var addressList model.AddressList = model.QueryAddress()
 	for len(addressList.Addresses) > 9 {
 
@@ -21,6 +22,7 @@ func main() {
 			}
 		*/
 		addressList = model.QueryAddress()
-
 	}
+	//time.Sleep(timeout * time.Minute)
+	//}
 }
