@@ -54,8 +54,14 @@ func WriteFirewall(filename string) {
 	ip := os.Getenv("FWIP")
 	user := os.Getenv("FWUSER")
 	password := os.Getenv("FWPASS")
-	res := exec.Command("plink.exe", "-ssh", "-l", user, "-pw", password, "-P", "22", "-m", filename, ip, "-sshlog", "permit.log", "-logappend")
-	res.Run()
-	fmt.Println("Written the address list to the firewall:", ip)
+	res := exec.Command("./plink.exe", "-ssh", "-l", user, "-pw", password, "-P", "22", "-m", filename, ip, "-sshlog", "permit.log", "-logappend")
+	err = res.Start()
+	if err != nil {
+		fmt.Println(err)
+	}
+	err = res.Wait()
+	if err != nil {
+		fmt.Println(err)
+	}
 
 }
