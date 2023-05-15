@@ -9,7 +9,10 @@ DSN= "host=127.0.0.1 user=postgres password=yourdb_password dbname=postgres port
 FWIP=xx.xx.xx.xx
 FWUSER=admin
 FWPASS=yourpassword
-TIMEOUT=
+TIMEOUT= 5
+
+The Variable TIMEOUT should not be set too short because it should wait for the ending of write the command to the firewall.
+
 
 ## Error information for plink
 
