@@ -16,6 +16,6 @@ The Variable TIMEOUT should not be set too short because it should wait for the 
 
 ## Error information for plink
 
-If you find the log file, permit.log have the connection reset by peer, you should check the ssh connect to firewall address through putty.exe. The cause may be the crypto algorithm is not be supported. When you use putty to connect the firewall successfully, the plink can connect to it too. 
+If you find the log file, permit.log have the connection reset by peer, you should check the ssh connect to firewall address through putty.exe. The cause may be the crypto algorithm is not supported. When you use putty to connect the firewall successfully, the plink can connect to it too. 
 
 
